@@ -1,5 +1,6 @@
 import itchat
 import requests
+import sys
 itchat.auto_login(hotReload=True,enableCmdQR=2)
 
 def get_weather(location="",png=False):
@@ -7,8 +8,9 @@ def get_weather(location="",png=False):
         url="http://wttr.in/"+location.replace(" ","+")+"?lang=zh"
         url=url.replace("?","_").replace("&","_")+".png"
         response=requests.get(url)
-        open('weather.png','wb').write(response.content)
-        return 'weather.png'
+        weather_pic="/tmp/weather.png"
+        open(weather_pic,'wb').write(response.content)
+        return weather_pic
     else:
         url="http://wttr.in/"+location.replace(" ","+")+"?lang=zh&0qnT"
         response=requests.get(url)
@@ -23,7 +25,7 @@ def get_weather_pic(location=""):
 
 home=itchat.search_chatrooms(name='home')[0]
 
-for city in ('zhuhai','dongguan'):
+for city in sys.argv[1:]:
     weather=get_weather_pic(city)
     ret=itchat.send('@img@%s' % weather,home.UserName)
     print(ret)
