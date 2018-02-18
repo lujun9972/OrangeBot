@@ -1,0 +1,10 @@
+#+TITLE: README
+#+AUTHOR: lujun9972
+#+TAGS: OrangeBot
+#+DATE: [2018-02-18 Sun 21:48]
+#+LANGUAGE:  zh-CN
+#+OPTIONS:  H:6 num:nil toc:t \n:nil ::t |:t ^:nil -:nil f:t *:t <:nil
+
+1. 运行 =nohup python3 wechat_keep_alive.py &= 保持微信登录
+
+2. 在crontab中定时运行 =weather_reporter.py= 往home发送天气预报
